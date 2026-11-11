@@ -1,1 +1,0 @@
-# Sweety-Blood-Glucose-Tracker
