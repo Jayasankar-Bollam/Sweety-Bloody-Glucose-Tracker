@@ -5,6 +5,8 @@ const pool = require("../config/db");
 
 const router = express.Router();
 
+const auth = require("../middleware/auth");
+
 router.post("/register", async (req, res) => {
   try {
     const { name, email, password } = req.body || {};
@@ -57,6 +59,19 @@ router.post("/login", async (req, res) => {
     const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET, { expiresIn: "1d" });
 
     res.json({ token, user: { id: user.id, name: user.name, email: user.email } });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Something went wrong." });
+  }
+});
+
+router.get("/me",auth,async (req, res) => {
+  try {
+    const result = await pool.query(
+      "SELECT id,name,email FROM users WHERE id = $1",
+      [req.user.id]
+    );
+    res.json(result.rows[0]);
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Something went wrong." });
