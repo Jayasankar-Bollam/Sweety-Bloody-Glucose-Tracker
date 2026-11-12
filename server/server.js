@@ -11,6 +11,8 @@ app.use("/auth", require("./routes/auth"));
 
 app.use("/readings", require("./routes/readings"));
 
+app.use("/reports", require("./routes/reports"));
+
 app.get("/", (req, res) => {
   res.send("Server is running");
 });
