@@ -4,6 +4,7 @@ import { api } from "../api";
 import { getUser, logout } from "../auth";
 import { slotLabel } from "../constants";
 import ReadingForm from "../components/ReadingForm";
+import Reports from "../components/Reports";
 
 export default function Dashboard() {
   const navigate = useNavigate();
@@ -81,7 +82,10 @@ export default function Dashboard() {
         onSubmit={addReading}
         clearOnSuccess
       />
-
+      
+            <h2>Reports</h2>
+      <Reports refreshKey={readings} />
+      
       <h2>Your readings</h2>
       {pageError && <p className="error">{pageError}</p>}
       {loading && <p>Loading...</p>}
