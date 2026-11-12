@@ -20,6 +20,9 @@ export async function api(path, { method = "GET", body } = {}) {
     window.location.href = "/login";
     throw new Error("Session expired. Please log in again.");
   }
+   if (!res.ok) {
+    throw new Error(data.error || "Something went wrong.");
+  }
 
   return data;
 }
