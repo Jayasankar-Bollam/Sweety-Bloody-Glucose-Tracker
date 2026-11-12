@@ -1,14 +1,24 @@
 import { useEffect, useState } from "react";
-import { api } from "./api";
+import { Routes, Route, Navigate } from "react-router-dom";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
+import Dashboard from "./pages/Dashboard";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 export default function App() {
-  const [msg, setMsg] = useState("Checking server...");
-
-  useEffect(() => {
-    api("/readings")
-      .then(() => setMsg("Logged in and connected"))
-      .catch((err) => setMsg("Server says: " + err.message));
-  }, []);
-
-  return <h1>{msg}</h1>;
+  return (
+    <Routes>
+      <Route path="/login" element={<Login />} />
+      <Route path="/register" element={<Register />} />
+      <Route
+        path="/"
+        element={
+          <ProtectedRoute>
+            <Dashboard />
+          </ProtectedRoute>
+        }
+      />
+      <Route path="*" element={<Navigate to="/" replace />} />
+    </Routes>
+  );
 }

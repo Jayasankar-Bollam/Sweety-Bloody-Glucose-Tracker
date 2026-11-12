@@ -14,8 +14,11 @@ export async function api(path, { method = "GET", body } = {}) {
 
   const data = await res.json().catch(() => ({}));
 
-  if (!res.ok) {
-    throw new Error(data.error || "Something went wrong.");
+   if (res.status === 401 && token && !path.startsWith("/auth/")) {
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+    window.location.href = "/login";
+    throw new Error("Session expired. Please log in again.");
   }
 
   return data;
