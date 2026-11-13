@@ -189,11 +189,12 @@ Valid slots: `morning`, `after_breakfast`, `after_lunch`, `after_dinner`.
 
 
 
-![Login](docs/screenshots/login.png)
-![Dashboard](docs/screenshots/dashboard.png)
-![Reports](docs/screenshots/reports.png)
+![Login](screenshots/loginpage.png)
+![ReadingForm](screenshots/ReadingForm.png)
+![Dashboard](screenshots/ReadingsDashbboard.png)
+![Reports](screenshots/Reports.png)
 
-Screen recording: <add link here>
+
 
 ## Notes
 
